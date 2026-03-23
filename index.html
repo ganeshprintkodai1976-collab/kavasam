@@ -11,9 +11,12 @@ body {
   margin: 0;
   background: #2b0000;
   color: #fff44f;
-  font-size: 24px;
+  font-size: clamp(18px, 4vw, 26px);
   font-family: "Noto Sans Tamil", sans-serif;
   overflow-y: scroll;
+}
+html {
+  scroll-behavior: smooth;
 }
 
 /* Container */
@@ -32,7 +35,7 @@ body {
   text-shadow: 0 0 10px #fff44f;
 }
 .title {
-  display: black;
+  display: block;
   font size: 34px;
   font-weight: bold;
   color: white;
