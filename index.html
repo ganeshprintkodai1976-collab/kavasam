@@ -4,61 +4,90 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>à®•à®¨à¯à®¤ à®šà®·à¯à®Ÿà®¿ à®•à®µà®šà®®à¯</title>
+<title>கந்த சஷ்டி கவசம்</title>
 
 <style>
 body {
   margin: 0;
-  background: black;
-  color: #00ffcc;
+  background: #2b0000;
+  color: #fff44f;
   font-size: 24px;
   font-family: "Noto Sans Tamil", sans-serif;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
+/* Container */
 #container {
-  position: absolute;
-  bottom: -100%;
   width: 100%;
   text-align: center;
   padding: 20px;
 }
 
+/* Text */
 #text {
   line-height: 2.2;
   white-space: pre-line;
+  max-width: 900px;
+  margin: auto;
+  text-shadow: 0 0 10px #fff44f;
+}
+.title {
+  display: black;
+  font size: 34px;
+  font-weight: bold;
+  color: white;
 }
 
-/* Scrolling Animation */
-@keyframes scrollUp {
-  0% { bottom: -100%; }
-  100% { bottom: 100%; }
+/* Buttons */
+#pauseBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff44f;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-#container {
-  animation: scrollUp 70s linear infinite;
+#upBtn, #downBtn {
+  position: fixed;
+  left: 20px;
+  background: #fff44f;
+  color: black;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
+
+#upBtn { bottom: 80px; }
+#downBtn { bottom: 30px; }
+
 </style>
-
 </head>
 
 <body>
 
+<button id="pauseBtn" onclick="toggleScroll()">Pause</button>
+<button id="upBtn" onclick="scrollUpManual()">▲</button>
+<button id="downBtn" onclick="scrollDownManual()">▼</button>
+
 <div id="container">
   <div id="text">
 
-கந்த சஷ்டி கவசம் காப்பு
-துதிப்போர்க்கு வல்வினை போம்; துன்பம்போம்; நெஞ்சில்
+<span class="title">கந்த சஷ்டி கவசம் காப்பு</span>
 
-பதிப்போர்க்குச் செல்வம் பலித்துக்-கதித்தோங்கும்நிஷ்டையுங் கைகூடும், நிமலரருள் கந்தர்
-
-சஷ்டி கவசம் தனை.
-
+துதிப்போர்க்கு வல்வினை போம்; துன்பம்போம்; 
+நெஞ்சில்பதிப்போர்க்குச் செல்வம் பலித்துக்-
+கதித்தோங்கும் நிஷ்டையுங் கைகூடும்
+நிமலரருள் கந்தர் சஷ்டி கவசம் தனை
 அமர ரிடர்தீர அமரம் புரிந்த
-
 குமரனடி நெஞ்சே குறி.
 
-கந்த சஷ்டி கவசம் பாடல் வரிகள்
+<span class="title">கந்த சஷ்டி கவசம் பாடல் வரிகள்</span>
+
 சஷ்டியை நோக்கச் சரவண பவனார்
 
 சிஷ்டருக் குதவும் செங்கதிர் வேலோன்
@@ -550,9 +579,50 @@ body {
 சரணம் சரணம் சண்முகா சரணம்!
 
 சரணம் சரணம் சண்முகா சரணம்!
-
   </div>
 </div>
+
+<script>
+let running = true;
+let scrollInterval;
+
+/* AUTO SCROLL (NO BLANK ISSUE 🔥) */
+function startAutoScroll(){
+  scrollInterval = setInterval(() => {
+    window.scrollBy(0, 1); // speed control
+  }, 50); // lower = faster, higher = slower
+}
+
+function stopAutoScroll(){
+  clearInterval(scrollInterval);
+}
+
+function toggleScroll(){
+  const btn = document.getElementById("pauseBtn");
+
+  if(running){
+    stopAutoScroll();
+    btn.innerText = "Play";
+  } else {
+    startAutoScroll();
+    btn.innerText = "Pause";
+  }
+
+  running = !running;
+}
+
+/* Manual controls */
+function scrollUpManual(){
+  window.scrollBy({ top: -150, behavior: 'smooth' });
+}
+
+function scrollDownManual(){
+  window.scrollBy({ top: 150, behavior: 'smooth' });
+}
+
+/* Start automatically */
+startAutoScroll();
+</script>
 
 </body>
 </html>
